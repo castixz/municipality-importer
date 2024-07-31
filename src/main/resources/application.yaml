@@ -1,4 +1,5 @@
 spring:
   application:
     name: village-importer
-
+app:
+  taskType: ${TASK_TYPE}
