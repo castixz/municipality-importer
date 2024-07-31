@@ -1,13 +1,13 @@
-package org.castixz.address_loader;
+package org.castixz.municipality_importer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AddressLoaderApplication {
+public class MunicipalityImporter {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AddressLoaderApplication.class, args);
+		SpringApplication.run(MunicipalityImporter.class, args);
 	}
 
 }

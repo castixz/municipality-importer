@@ -1,3 +1,4 @@
 spring:
   application:
-    name: address-loader
+    name: village-importer
+
