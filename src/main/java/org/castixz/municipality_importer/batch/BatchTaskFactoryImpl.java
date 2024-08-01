@@ -3,6 +3,8 @@ package org.castixz.municipality_importer.batch;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.castixz.municipality_importer.enums.TaskType;
+import org.castixz.municipality_importer.tasks.BatchTask;
+import org.castixz.municipality_importer.tasks.ImportMunicipalityTask;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

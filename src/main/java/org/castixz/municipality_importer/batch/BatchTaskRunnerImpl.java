@@ -1,6 +1,7 @@
 package org.castixz.municipality_importer.batch;
 
 import lombok.extern.slf4j.Slf4j;
+import org.castixz.municipality_importer.tasks.BatchTask;
 import org.springframework.stereotype.Component;
 
 @Component
