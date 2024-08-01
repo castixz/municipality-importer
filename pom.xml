@@ -11,7 +11,7 @@
 	<groupId>org.castixz</groupId>
 	<artifactId>municipality-importer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>village-importer</name>
+	<name>municipality-importer</name>
 	<description>Demo XML loader of data about municipality for interview purposes</description>
 	<url/>
 	<licenses>
