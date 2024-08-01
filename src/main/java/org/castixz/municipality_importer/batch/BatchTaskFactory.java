@@ -5,5 +5,5 @@ import org.castixz.municipality_importer.tasks.BatchTask;
 
 interface BatchTaskFactory {
 
-    BatchTask getBatchJob(TaskType taskType);
+    BatchTask getBatchTask(TaskType taskType);
 }

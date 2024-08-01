@@ -15,9 +15,8 @@ public class BatchServiceImpl implements BatchService {
     private final BatchTaskRunner batchTaskRunner;
 
     @Override
-    public void runJobByJobType(TaskType taskType) {
-        log.info("Fetching job for jobType: {}", taskType.toString());
-        var batchJob = batchTaskFactory.getBatchJob(taskType);
-        batchTaskRunner.run(batchJob);
+    public void runJobByJobType(TaskType taskType) {;
+        var batchTask = batchTaskFactory.getBatchTask(taskType);
+        batchTaskRunner.run(batchTask);
     }
 }

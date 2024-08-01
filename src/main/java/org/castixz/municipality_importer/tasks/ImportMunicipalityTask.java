@@ -1,7 +1,6 @@
 package org.castixz.municipality_importer.tasks;
 
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.castixz.municipality_importer.exceptions.FileDownloadFailedException;
 import org.castixz.municipality_importer.file.FileUtils;
@@ -57,9 +56,10 @@ public class ImportMunicipalityTask implements BatchTask {
     private final MunicipalityPartRepository municipalityPartRepository;
 
     @Override
-    @SneakyThrows
     public void execute() {
+        log.info("File fetching starting");
         FileUtils.getFileByUrlAndSave(URL_TO_MUNICIPALITY_FILE, WORKDIR_MUNICIPALITY_ZIP);
+        log.info("File fetching finished");
         FileUtils.unzip(WORKDIR_MUNICIPALITY_ZIP, WORKDIR_PATH);
         try {
             Files.delete(Path.of(WORKDIR_MUNICIPALITY_ZIP));
@@ -67,11 +67,14 @@ public class ImportMunicipalityTask implements BatchTask {
             throw new RuntimeException(e);
         }
         var result = municipalityXMLParser.parse(Path.of(FILE_TO_PARSE_PATH));
+        log.info("Starting inserting municipalities to DB");
         result.municipalityDTOList()
                 .stream()
                 .map(municipalityMapper::toDAO)
                 .forEach(municipalityRepository::save);
+        log.info("Inserting municipalities to DB has been finished");
 
+        log.info("Starting inserting municipality parts to DB");
         result.municipalityPartDTOList().stream()
                 .map(municipalityPartDTO -> {
                     var mainMunicipality = municipalityRepository.findByCode(municipalityPartDTO.mainMunicipality());
@@ -80,5 +83,6 @@ public class ImportMunicipalityTask implements BatchTask {
                     return municipalityPartDAO;
                 })
                 .forEach(municipalityPartRepository::save);
+        log.info("Inserting municipality parts to DB has been finished");
     }
 }
