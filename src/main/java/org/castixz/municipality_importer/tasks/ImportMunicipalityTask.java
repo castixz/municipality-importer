@@ -27,19 +27,19 @@ public class ImportMunicipalityTask implements BatchTask {
 
     private static final URL URL_TO_MUNICIPALITY_FILE;
 
-    private static final String WORKDIR_PATH;
+    private static final Path WORKDIR_PATH;
 
-    private static final String WORKDIR_MUNICIPALITY_ZIP;
+    private static final Path WORKDIR_MUNICIPALITY_ZIP;
 
-    private static final String FILE_TO_PARSE_PATH;
+    private static final Path FILE_TO_PARSE_PATH;
 
     static {
         try {
             URL_TO_MUNICIPALITY_FILE = new URI("""
                     https://www.smartform.cz/download/kopidlno.xml.zip""").toURL();
-            WORKDIR_PATH = System.getProperty("user.dir") + "/workdir";
-            WORKDIR_MUNICIPALITY_ZIP = WORKDIR_PATH + "/municipality.zip";
-            FILE_TO_PARSE_PATH = WORKDIR_PATH + "/20210331_OB_573060_UZSZ.xml";
+            WORKDIR_PATH = Path.of(System.getProperty("user.dir") + "/workdir");
+            WORKDIR_MUNICIPALITY_ZIP = Path.of(WORKDIR_PATH + "/municipality.zip");
+            FILE_TO_PARSE_PATH = Path.of(WORKDIR_PATH + "/20210331_OB_573060_UZSZ.xml");
         } catch (MalformedURLException | URISyntaxException e) {
             throw new FileDownloadFailedException("URI is not valid", e);
         }
@@ -60,13 +60,13 @@ public class ImportMunicipalityTask implements BatchTask {
         log.info("File fetching starting");
         FileUtils.getFileByUrlAndSave(URL_TO_MUNICIPALITY_FILE, WORKDIR_MUNICIPALITY_ZIP);
         log.info("File fetching finished");
-        FileUtils.unzip(WORKDIR_MUNICIPALITY_ZIP, WORKDIR_PATH);
+        FileUtils.unzip(WORKDIR_MUNICIPALITY_ZIP.toString(), WORKDIR_PATH.toString());
         try {
-            Files.delete(Path.of(WORKDIR_MUNICIPALITY_ZIP));
+            Files.delete(WORKDIR_MUNICIPALITY_ZIP);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        var result = municipalityXMLParser.parse(Path.of(FILE_TO_PARSE_PATH));
+        var result = municipalityXMLParser.parse(FILE_TO_PARSE_PATH);
         log.info("Starting inserting municipalities to DB");
         result.municipalityDTOList()
                 .stream()

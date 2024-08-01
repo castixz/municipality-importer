@@ -9,6 +9,7 @@ import org.castixz.municipality_importer.exceptions.FileUnzipFailedException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
 
 
 @UtilityClass
@@ -25,9 +26,9 @@ public class FileUtils {
         }
     }
 
-    public static void getFileByUrlAndSave(URL fileUrl, String targetPath) {
+    public static void getFileByUrlAndSave(URL fileUrl, Path targetPath) {
         log.debug("Creating file {} to which remote file will be copied",targetPath);
-        var outputFile = new File(targetPath);
+        var outputFile = new File(targetPath.toString());
         try {
             log.info("Fetching file from {} and writing into {}", fileUrl.getPath(), targetPath );
             org.apache.commons.io.FileUtils.copyURLToFile(fileUrl, outputFile);
