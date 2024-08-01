@@ -1,5 +1,15 @@
 spring:
   application:
     name: village-importer
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  flyway:
+    baseline-on-migrate: true
 app:
   taskType: ${TASK_TYPE}

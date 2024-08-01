@@ -1,0 +1,12 @@
+CREATE SEQUENCE  IF NOT EXISTS municipality_id_seq START WITH 1 INCREMENT BY 50;
+
+CREATE TABLE municipality (
+  id INTEGER NOT NULL,
+   code VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   created_at TIMESTAMP WITHOUT TIME ZONE,
+   updated_at TIMESTAMP WITHOUT TIME ZONE,
+   CONSTRAINT pk_municipality PRIMARY KEY (id)
+);
+
+ALTER TABLE municipality ADD CONSTRAINT uc_municipality_code UNIQUE (code);
