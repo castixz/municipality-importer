@@ -2,10 +2,9 @@ package org.castixz.municipality_importer.parser;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.castixz.municipality_importer.dto.MunicipalityDTO;
 import org.castixz.municipality_importer.dto.MunicipalityPartDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -16,9 +15,9 @@ import java.nio.file.Path;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class MunicipalityXMLParser {
 
-    private static final Logger log = LoggerFactory.getLogger(MunicipalityXMLParser.class);
     private final MunicipalityParsingResultManager municipalityParsingResultManager;
 
 
