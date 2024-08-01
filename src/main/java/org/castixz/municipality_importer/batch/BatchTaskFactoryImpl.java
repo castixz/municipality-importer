@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.castixz.municipality_importer.enums.TaskType;
 import org.castixz.municipality_importer.tasks.BatchTask;
 import org.castixz.municipality_importer.tasks.ImportMunicipalityTask;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -16,7 +17,7 @@ class BatchTaskFactoryImpl implements BatchTaskFactory {
 
     private final Map<TaskType, BatchTask> REGISTERED_JOBS = new HashMap<>();
 
-    private final ImportMunicipalityTask importVillagesJob;
+    private final ApplicationContext applicationContext;
 
     @Override
     public BatchTask getBatchJob(TaskType taskType) {
@@ -25,7 +26,7 @@ class BatchTaskFactoryImpl implements BatchTaskFactory {
 
     @PostConstruct
     private void register(){
-        REGISTERED_JOBS.put(TaskType.MUNICIPALITY_IMPORT, importVillagesJob);
+        REGISTERED_JOBS.put(TaskType.MUNICIPALITY_IMPORT, applicationContext.getBean(ImportMunicipalityTask.class));
     }
 
 }
