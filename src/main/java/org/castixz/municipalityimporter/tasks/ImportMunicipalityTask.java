@@ -58,7 +58,7 @@ public class ImportMunicipalityTask implements BatchTask {
             this.preprocessTheFile();
             var result = municipalityXMLParser.parse(Path.of(WORKDIR_PATH.toString(), XML_FILE_NAME));
             this.saveToDB(result);
-            return TaskResult.SUCCESSFULL;
+            return TaskResult.SUCCESSFUL;
         } catch (Exception e) {
             log.error("Task execution failed", e);
             return TaskResult.FAIL;
