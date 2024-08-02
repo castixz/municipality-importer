@@ -23,7 +23,7 @@ import java.nio.file.Path;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class ImportMunicipalityTask implements BatchTask {
+class ImportMunicipalityTask implements Task {
 
     private static final String ZIP_FILE_NAME = "municipality.zip";
 

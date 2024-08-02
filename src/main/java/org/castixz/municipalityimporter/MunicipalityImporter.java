@@ -1,7 +1,7 @@
 package org.castixz.municipalityimporter;
 
 import lombok.extern.slf4j.Slf4j;
-import org.castixz.municipalityimporter.batch.BatchService;
+import org.castixz.municipalityimporter.tasks.TaskService;
 import org.castixz.municipalityimporter.config.AppConfig;
 import org.castixz.municipalityimporter.repository.MunicipalityPartRepository;
 import org.castixz.municipalityimporter.repository.MunicipalityRepository;
@@ -18,7 +18,7 @@ public class MunicipalityImporter {
 	public static void main(String[] args) {
 		var ctx = SpringApplication.run(MunicipalityImporter.class, args);
 		var appConfig = ctx.getBean(AppConfig.class);
-		var batchService = ctx.getBean(BatchService.class);
+		var batchService = ctx.getBean(TaskService.class);
 		log.info("Starting batch service with following task type: {}", appConfig.getTaskType().toString());
 		batchService.runJobByJobType(appConfig.getTaskType());
 		log.info("Done - the program will be terminated");

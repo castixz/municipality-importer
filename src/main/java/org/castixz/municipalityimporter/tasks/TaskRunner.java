@@ -2,7 +2,7 @@ package org.castixz.municipalityimporter.tasks;
 
 import org.castixz.municipalityimporter.enums.TaskResult;
 
-public interface BatchTask {
+interface TaskRunner {
 
-    TaskResult execute();
+    TaskResult run(Task job);
 }

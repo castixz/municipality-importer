@@ -1,8 +1,8 @@
-package org.castixz.municipalityimporter.batch;
+package org.castixz.municipalityimporter.tasks;
 
 import org.castixz.municipalityimporter.enums.TaskType;
 
-public interface BatchService {
+public interface TaskService {
 
     void runJobByJobType(TaskType taskType);
 }

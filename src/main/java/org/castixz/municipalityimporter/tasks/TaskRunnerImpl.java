@@ -1,16 +1,15 @@
-package org.castixz.municipalityimporter.batch;
+package org.castixz.municipalityimporter.tasks;
 
 import lombok.extern.slf4j.Slf4j;
 import org.castixz.municipalityimporter.enums.TaskResult;
-import org.castixz.municipalityimporter.tasks.BatchTask;
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-class BatchTaskRunnerImpl implements BatchTaskRunner {
+class TaskRunnerImpl implements TaskRunner {
 
     @Override
-    public TaskResult run(BatchTask job) {
+    public TaskResult run(Task job) {
         log.info("Triggering execution of task");
         var result = job.execute();
         log.info("Task has been executed");

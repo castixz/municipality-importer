@@ -1,11 +1,9 @@
-package org.castixz.municipalityimporter.batch;
+package org.castixz.municipalityimporter.tasks;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.castixz.municipalityimporter.enums.TaskType;
-import org.castixz.municipalityimporter.tasks.BatchTask;
-import org.castixz.municipalityimporter.tasks.ImportMunicipalityTask;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -15,14 +13,14 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-class BatchTaskFactoryImpl implements BatchTaskFactory {
+class TaskFactoryImpl implements TaskFactory {
 
-    private final Map<TaskType, BatchTask> REGISTERED_TASKS = new HashMap<>();
+    private final Map<TaskType, Task> REGISTERED_TASKS = new HashMap<>();
 
     private final ApplicationContext applicationContext;
 
     @Override
-    public BatchTask getBatchTask(TaskType taskType) {
+    public Task getBatchTask(TaskType taskType) {
         log.info("Retuning task: {}", taskType.toString());
         return REGISTERED_TASKS.get(taskType);
     }
