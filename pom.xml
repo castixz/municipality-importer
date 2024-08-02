@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.castixz</groupId>
-	<artifactId>municipality-importer</artifactId>
+	<artifactId>municipalityimporter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>municipality-importer</name>
 	<description>Demo XML loader of data about municipality for interview purposes</description>
