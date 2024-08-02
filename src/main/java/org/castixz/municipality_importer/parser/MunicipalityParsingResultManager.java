@@ -1,10 +1,9 @@
 package org.castixz.municipality_importer.parser;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.castixz.municipality_importer.dto.MunicipalityDTO;
 import org.castixz.municipality_importer.dto.MunicipalityPartDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,8 +11,8 @@ import java.util.List;
 
 @Component
 @Getter
+@Slf4j
 public class MunicipalityParsingResultManager {
-    private static final Logger log = LoggerFactory.getLogger(MunicipalityParsingResultManager.class);
     private final List<MunicipalityDTO> municipalities = new ArrayList<>();
         private final List<MunicipalityPartDTO> municipalityParts = new ArrayList<>();
 

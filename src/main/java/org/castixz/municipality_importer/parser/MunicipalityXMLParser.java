@@ -35,8 +35,9 @@ public class MunicipalityXMLParser {
     }
 
     private void parseMunicipalitiesParts(Document document) {
-        log.info("Starting parsing tag: {}", "vf:CastObce");
-        var partsList = document.getElementsByTagName("vf:CastObce");
+        final var municipalityPartTag = "vf:CastObce";
+        log.info("Starting parsing tag: {}", municipalityPartTag);
+        var partsList = document.getElementsByTagName(municipalityPartTag);
         log.info("{} nodes have been found", partsList.getLength());
         for (int j = 0; j < partsList.getLength(); j++) {
             Node partNode = partsList.item(j);
@@ -54,12 +55,13 @@ public class MunicipalityXMLParser {
                         .build());
             }
         }
-        log.info("Parsing tag {} has finished", "vf:CastObce");
+        log.info("Parsing tag {} has finished", municipalityPartTag);
     }
 
     private void parseMunicipalities(Document document) {
-        log.info("Starting parsing tag: {}", "vf:Obec");
-        var municipalityList = document.getElementsByTagName("vf:Obec");
+        final var municipalityTag = "vf:Obec";
+        log.info("Starting parsing tag: {}", municipalityTag);
+        var municipalityList = document.getElementsByTagName(municipalityTag);
         log.info("{} nodes have been found", municipalityList.getLength());
         for (int i = 0; i < municipalityList.getLength(); i++) {
             var node = municipalityList.item(i);
@@ -74,6 +76,6 @@ public class MunicipalityXMLParser {
                         .build());
             }
         }
-        log.info("Parsing tag {} has finished", "vf:Obec");
+        log.info("Parsing tag {} has finished", municipalityTag);
     }
 }

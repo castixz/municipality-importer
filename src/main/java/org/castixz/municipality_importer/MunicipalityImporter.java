@@ -31,6 +31,7 @@ public class MunicipalityImporter {
 			log.info("Deleting all records from DB");
 			municipalityPartRepository.deleteAll();
 			municipalityRepository.deleteAll();
+			log.info("Deleting all records from DB finished");
 		};
 	}
 
