@@ -1,5 +1,6 @@
 package org.castixz.municipalityimporter.file;
 
+import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import net.lingala.zip4j.ZipFile;
@@ -12,6 +13,7 @@ import java.net.URL;
 import java.nio.file.Path;
 
 import static org.apache.commons.io.FileUtils.copyURLToFile;
+import static org.apache.commons.io.FileUtils.deleteDirectory;
 
 @UtilityClass
 @Slf4j
@@ -37,5 +39,10 @@ public class FileUtils {
         } catch (IOException e) {
             throw new FileDownloadFailedException("Downloading file failed", e);
         }
+    }
+
+    @SneakyThrows
+    public static void emptyAndDeleteDirectory(String path){
+        deleteDirectory(new File(path));
     }
 }

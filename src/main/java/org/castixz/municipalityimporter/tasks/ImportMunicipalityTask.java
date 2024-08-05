@@ -58,6 +58,7 @@ class ImportMunicipalityTask implements Task {
             this.preprocessTheFile();
             var result = municipalityXMLParser.parse(Path.of(WORKDIR_PATH.toString(), XML_FILE_NAME));
             this.saveToDB(result);
+            this.clean();
             return TaskResult.SUCCESSFUL;
         } catch (Exception e) {
             log.error("Task execution failed", e);
@@ -99,5 +100,11 @@ class ImportMunicipalityTask implements Task {
                 .map(municipalityMapper::toDAO)
                 .forEach(municipalityRepository::save);
         log.info("Inserting municipalities to DB has been finished");
+    }
+
+    private void clean() {
+        log.info("Deleting folder {} and content in it", WORKDIR_PATH);
+        FileUtils.emptyAndDeleteDirectory(WORKDIR_PATH.toString());
+        log.info("Deleting done");
     }
 }
