@@ -17,7 +17,7 @@ import java.nio.file.Path;
 public class FileUtils {
 
     public static void unzip(String zipFilePath, String targetDirectory) {
-        try (var file = new ZipFile(zipFilePath)){
+        try (var file = new ZipFile(zipFilePath)) {
             log.info("Extracting content of {} to {}", zipFilePath, targetDirectory);
             file.extractAll(targetDirectory);
             log.info("Unzipping file done");
@@ -27,14 +27,14 @@ public class FileUtils {
     }
 
     public static void getFileByUrlAndSave(URL fileUrl, Path targetPath) {
-        log.debug("Creating file {} to which remote file will be copied",targetPath);
+        log.debug("Creating file {} to which remote file will be copied", targetPath);
         var outputFile = new File(targetPath.toString());
         try {
-            log.info("Fetching file from {} and writing into {}", fileUrl.getPath(), targetPath );
+            log.info("Fetching file from {} and writing into {}", fileUrl.getPath(), targetPath);
             org.apache.commons.io.FileUtils.copyURLToFile(fileUrl, outputFile);
             log.info("Fetching file done");
         } catch (IOException e) {
-            throw new FileDownloadFailedException("Downloading file failed",e);
+            throw new FileDownloadFailedException("Downloading file failed", e);
         }
     }
 }

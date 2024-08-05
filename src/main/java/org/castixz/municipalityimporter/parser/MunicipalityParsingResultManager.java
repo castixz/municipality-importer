@@ -14,20 +14,20 @@ import java.util.List;
 @Slf4j
 public class MunicipalityParsingResultManager {
     private final List<MunicipalityDTO> municipalities = new ArrayList<>();
-        private final List<MunicipalityPartDTO> municipalityParts = new ArrayList<>();
+    private final List<MunicipalityPartDTO> municipalityParts = new ArrayList<>();
 
-        public void addMunicipality(MunicipalityDTO municipality){
-            municipalities.add(municipality);
-        }
+    public void addMunicipality(MunicipalityDTO municipality) {
+        municipalities.add(municipality);
+    }
 
-        public void addMunicipalityPart(MunicipalityPartDTO municipalityPart){
-            log.debug("Adding municipality part with code: {}",municipalityPart.code());
-            municipalityParts.add(municipalityPart);
-        }
+    public void addMunicipalityPart(MunicipalityPartDTO municipalityPart) {
+        log.debug("Adding municipality part with code: {}", municipalityPart.code());
+        municipalityParts.add(municipalityPart);
+    }
 
-        public MunicipalityParsingResult getResult(){
-            log.info("Returning parsing result to the client. Parsing result has {} municipalities and {} municipality parts"
-            , municipalities.size(), municipalityParts.size());
-            return new MunicipalityParsingResult(municipalities,municipalityParts);
-        }
+    public MunicipalityParsingResult getResult() {
+        log.info("Returning parsing result to the client. Parsing result has {} municipalities and {} municipality parts"
+                , municipalities.size(), municipalityParts.size());
+        return new MunicipalityParsingResult(municipalities, municipalityParts);
+    }
 }
