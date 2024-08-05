@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 
+import static org.apache.commons.io.FileUtils.copyURLToFile;
 
 @UtilityClass
 @Slf4j
@@ -31,7 +32,7 @@ public class FileUtils {
         var outputFile = new File(targetPath.toString());
         try {
             log.info("Fetching file from {} and writing into {}", fileUrl.getPath(), targetPath);
-            org.apache.commons.io.FileUtils.copyURLToFile(fileUrl, outputFile);
+            copyURLToFile(fileUrl, outputFile);
             log.info("Fetching file done");
         } catch (IOException e) {
             throw new FileDownloadFailedException("Downloading file failed", e);
