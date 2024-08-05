@@ -7,7 +7,7 @@ import org.castixz.municipalityimporter.enums.TaskType;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 @Component
@@ -15,7 +15,7 @@ import java.util.Map;
 @Slf4j
 class TaskFactoryImpl implements TaskFactory {
 
-    private final Map<TaskType, Task> REGISTERED_TASKS = new HashMap<>();
+    private final Map<TaskType, Task> REGISTERED_TASKS = new EnumMap<>(TaskType.class);
 
     private final ApplicationContext applicationContext;
 
